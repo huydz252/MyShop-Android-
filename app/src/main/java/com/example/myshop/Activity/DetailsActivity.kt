@@ -37,7 +37,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
 import com.example.myshop.Model.ItemsModel
 import com.example.myshop.R
-import com.example.project1762.Helper.ManagmentCart
+import com.example.myshop.Helper.ManagmentCart
 
 class DetailActivity : BaseActivity() {
 

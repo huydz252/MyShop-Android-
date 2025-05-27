@@ -41,17 +41,18 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import coil.compose.rememberAsyncImagePainter
+import com.example.myshop.Helper.ChangeNumberItemsListener
+import com.example.myshop.Helper.ManagmentCart
 import com.example.myshop.Model.ItemsModel
 import com.example.myshop.R
-import com.example.project1762.Helper.ChangeNumberItemsListener
-import com.example.project1762.Helper.ManagmentCart
 import java.util.ArrayList
 
 class CartActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CartScreen(ManagmentCart(this),
+            CartScreen(
+                ManagmentCart(this),
                 onBackClick = {
                     finish()
                 })
