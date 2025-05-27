@@ -40,6 +40,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -70,15 +71,20 @@ import com.example.myshop.ViewModel.MainViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
-import com.google.firebase.FirebaseApp
-import java.util.Locale
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
+import com.google.firebase.auth.FirebaseAuth
+
+
 
 
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val userName = FirebaseAuth.getInstance().currentUser?.displayName ?: "User"
         setContent {
-            MainActivityScreen{
+            MainActivityScreen(userName = userName){
                 startActivity(Intent(this, CartActivity::class.java))
             }
         }
@@ -86,7 +92,7 @@ class MainActivity : BaseActivity() {
 }
 
 @Composable
-fun MainActivityScreen(onCartClick:()->Unit) {
+fun MainActivityScreen(userName:String ,onCartClick:()->Unit) {
 
     val viewModel= MainViewModel()
     val banners= remember { mutableStateListOf<SliderModel>() }
@@ -149,7 +155,7 @@ fun MainActivityScreen(onCartClick:()->Unit) {
                 ) {
                     Column {
                         Text("Welcome Back", color = Color.Black)
-                        Text("Jackie",
+                        Text(userName,
                         color = Color.Black,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
@@ -165,6 +171,42 @@ fun MainActivityScreen(onCartClick:()->Unit) {
                             painter = painterResource(R.drawable.bell_icon),
                             contentDescription = null
                         )
+                        // Nút Đăng xuất
+                        val context = LocalContext.current
+                        TextButton(
+                            onClick = {
+                                // Sign out Firebase
+                                FirebaseAuth.getInstance().signOut()
+
+                                // Sign out GoogleSignInClient (nếu bạn dùng Google Sign-In)
+                                val googleSignInClient = GoogleSignIn.getClient(context, GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                googleSignInClient.signOut().addOnCompleteListener {
+                                    // Sau khi Google sign out xong mới chuyển về IntroActivity
+                                    val intent = Intent(context, IntroActivity::class.java).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    }
+                                    context.startActivity(intent)
+
+                                    if (context is android.app.Activity) {
+                                        context.finish()
+                                    }
+                                }
+                            }
+
+                            ,
+                            modifier = Modifier
+                                .background(colorResource(R.color.darkBrown), shape = RoundedCornerShape(8.dp))
+                                .padding(horizontal = 8.dp, vertical = 4.dp)
+                                .height(35.dp)
+
+                        ) {
+                            Text(
+                                text = "L.OUT",
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp
+                            )
+                        }
                     }
                 }
             }
@@ -438,8 +480,8 @@ fun BottomMenu (modifier: Modifier, onItemClick: () -> Unit){
         BottomMenuItem(icon = painterResource(R.drawable.btn_1), text = "Explorer")
         BottomMenuItem(icon = painterResource(R.drawable.btn_2), text = "Cart", onItemClick=onItemClick)
         BottomMenuItem(icon = painterResource(R.drawable.btn_3), text = "Favourite")
-        BottomMenuItem(icon = painterResource(R.drawable.btn_4), text = "Explorer")
-        BottomMenuItem(icon = painterResource(R.drawable.btn_5), text = "Explorer")
+        BottomMenuItem(icon = painterResource(R.drawable.btn_4), text = "Order")
+        BottomMenuItem(icon = painterResource(R.drawable.btn_5), text = "Profile")
     }
 }
 

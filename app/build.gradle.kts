@@ -39,53 +39,67 @@ android {
     buildFeatures {
         compose = true
     }
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.0" // Hoặc phù hợp với version của bạn
+    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity)
-    implementation(libs.firebase.database.ktx)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
+
+    // Compose BOM
+    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-text")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.05.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+
+    // ConstraintLayout for Compose
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0")
+
+    // Firebase
+    implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+
     implementation(libs.firebase.crashlytics.buildtools)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.foundation.android)
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+
+    // Accompanist (Pager)
+    implementation("com.google.accompanist:accompanist-pager:0.28.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+
+    // Coil (Image loading)
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
+    // Glide (Optional alternative to Coil)
+    implementation("com.github.bumptech.glide:glide:4.13.0")
+
+    // Gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // Material (for traditional XML-based UI, optional)
+    implementation("com.google.android.material:material:1.12.0")
+
+    // Compose LiveData
+    implementation("androidx.compose.runtime:runtime-livedata")
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation("io.coil-kt:coil-compose:2.2.2")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
-    implementation("com.google.accompanist:accompanist-pager:0.28.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-    implementation("androidx.compose.runtime:runtime-livedata:1.7.5")
-    implementation("com.github.bumptech.glide:glide:4.13.0")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation ("androidx.constraintlayout:constraintlayout-compose:1.1.0")
-
-    implementation ("androidx.compose.ui:ui-tooling:1.7.5")
-    implementation ("com.google.android.material:material:1.12.0")
-
-    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui")
 }

@@ -1,5 +1,6 @@
 package com.example.myshop.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -140,6 +141,7 @@ private fun CartScreen(
 fun CartSummary(itemTotal: Double, tax: Double, delivery: Double) {
 
     val total = itemTotal + tax + delivery
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -208,7 +210,10 @@ fun CartSummary(itemTotal: Double, tax: Double, delivery: Double) {
             Text(text = "$$total")
         }
         Button(
-            onClick = {},
+            onClick = {
+                // Mở CheckoutActivity khi nhấn nút
+                context.startActivity(Intent(context, CheckoutActivity::class.java))
+            },
 
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
