@@ -15,6 +15,7 @@ firebaseDatabaseKtx = "21.0.0"
 foundationLayoutAndroid = "1.6.7"
 firebaseCrashlyticsBuildtools = "3.0.3"
 constraintlayout = "2.2.1"
+foundationAndroid = "1.6.7"
 
 
 [libraries]
@@ -39,6 +40,7 @@ firebase-database-ktx = { group = "com.google.firebase", name = "firebase-databa
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

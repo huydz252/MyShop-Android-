@@ -77,10 +77,9 @@ import java.util.Locale
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             MainActivityScreen{
-
+                startActivity(Intent(this, CartActivity::class.java))
             }
         }
     }

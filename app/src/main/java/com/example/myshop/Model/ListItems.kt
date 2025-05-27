@@ -1,5 +1,6 @@
 package com.example.myshop.Model
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,10 +30,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import coil.compose.AsyncImage
+import com.example.myshop.Activity.DetailActivity
 import com.example.myshop.R
 
 @Composable
@@ -54,26 +56,22 @@ fun PopularItem(items:List<ItemsModel>,pos:Int) {
                 )
                 .height(195.dp)
                 .clickable {
-
+                    val intent = Intent(context, DetailActivity::class.java).apply {
+                        putExtra("object", items[pos])
+                    }
+                    startActivity(context, intent,null)
                 }, contentScale = ContentScale.Crop
         )
         Text(
             text=items[pos].title,
             color= Color.Black,
             fontSize = 16.sp,
-
             fontWeight = FontWeight.Bold,
-
             maxLines = 1,
-
             overflow = TextOverflow.Ellipsis,
-
             modifier = Modifier.padding(top=8.dp)
-
         )
-
         Row(
-
             modifier = Modifier.width(175.dp).padding(top=4.dp)
 
         ) {
