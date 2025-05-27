@@ -74,26 +74,28 @@ private fun CartScreen(
     val tax = remember { mutableStateOf(0.0) }
 
     calculatorCart(managmentCart, tax)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(top = 16.dp, bottom = 40.dp,start = 16.dp,end = 16.dp)
     ) {
 
         ConstraintLayout(modifier = Modifier.padding(top = 36.dp)) {
-
             val (backBtn, cartTxt) = createRefs()
 
-            Text(modifier = Modifier
-
-                .fillMaxWidth()
-                .constrainAs(cartTxt) { centerTo(parent) }, text = "Your Cart",
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .constrainAs(cartTxt) { centerTo(parent) },
+                text = "Your Cart",
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontSize = 25.sp
             )
 
-            Image(painter = painterResource(R.drawable.back),
+            Image(
+                painter = painterResource(R.drawable.back),
                 contentDescription = null,
                 modifier = Modifier
                     .clickable { onBackClick() }
@@ -104,13 +106,26 @@ private fun CartScreen(
                     }
             )
         }
+
         if (cartItems.value.isEmpty()) {
-            Text(text = "Cart Is Empty", modifier = Modifier.align(Alignment.CenterHorizontally))
+            Text(
+                text = "Cart Is Empty",
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         } else {
-            CartList(cartItems = cartItems.value, managmentCart) {
+            // Danh sách sản phẩm có thể cuộn, chiếm toàn bộ không gian còn lại
+            CartList(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                cartItems = cartItems.value,
+                managmentCart = managmentCart
+            ) {
                 cartItems.value = managmentCart.getListCart()
                 calculatorCart(managmentCart, tax)
             }
+
+            // Phần tổng tiền cố định ở dưới
             CartSummary(
                 itemTotal = managmentCart.getTotalFee(),
                 tax = tax.value,
@@ -214,14 +229,17 @@ fun CartSummary(itemTotal: Double, tax: Double, delivery: Double) {
 
 @Composable
 fun CartList(
+    modifier: Modifier = Modifier,
     cartItems: ArrayList<ItemsModel>,
     managmentCart: ManagmentCart,
     onItemChange: () -> Unit
 ) {
-    LazyColumn(Modifier.padding(top = 16.dp)) {
+    LazyColumn(
+        modifier = modifier.padding(top = 16.dp)
+    ) {
         items(cartItems) { item ->
             CartItem(
-                cartItems,
+                cartItems = cartItems,
                 item = item,
                 managmentCart = managmentCart,
                 onItemChange = onItemChange
