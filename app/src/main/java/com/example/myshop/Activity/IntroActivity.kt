@@ -1,4 +1,4 @@
-package com.example.myshop
+package com.example.myshop.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myshop.R
 
 
 class IntroActivity : BaseActivity() {
@@ -31,7 +32,8 @@ class IntroActivity : BaseActivity() {
                 startActivity (Intent(this, MainActivity::class.java))
             }
 
-        )}
+        )
+        }
     }
 }
 
@@ -55,7 +57,7 @@ fun IntroScreen(onClick:()->Unit={}) {
 
     ){
         Image(
-            painter = painterResource(id=R.drawable.fashion),
+            painter = painterResource(id= R.drawable.fashion),
             contentDescription = null,
             modifier = Modifier
                 .padding(top=8.dp)
@@ -64,7 +66,7 @@ fun IntroScreen(onClick:()->Unit={}) {
 
         )
         Image(
-            painter = painterResource(id=R.drawable.title),
+            painter = painterResource(id= R.drawable.title),
             contentDescription = null,
             modifier = Modifier
                 .padding(top=16.dp)
@@ -72,7 +74,7 @@ fun IntroScreen(onClick:()->Unit={}) {
             contentScale = ContentScale.Fit
         )
         Image(
-            painter = painterResource (id=R.drawable.go),
+            painter = painterResource (id= R.drawable.go),
             contentDescription = null,
             modifier = Modifier
                 .padding(top = 8.dp)
