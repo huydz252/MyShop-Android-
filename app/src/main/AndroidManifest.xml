@@ -15,6 +15,15 @@
         android:theme="@style/Theme.MyShop"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ExplorerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.FavouriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ProfileActivity"
             android:exported="false" />
         <activity

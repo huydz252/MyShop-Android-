@@ -11,7 +11,7 @@ data class ItemsModel(
     var model: ArrayList<String> = ArrayList(),
     var price: Double = 0.0,
     var rating: Double = 0.0,
-    var numberInCart: Int = 0,
+    var numberInCart: Int = 1,
     var showRecommended: Boolean = false,
     var categoryId: String = ""
 

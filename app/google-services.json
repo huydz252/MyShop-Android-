@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "795006859016",
+    "firebase_url": "https://myshopp-a7b9e-default-rtdb.firebaseio.com",
     "project_id": "myshopp-a7b9e",
     "storage_bucket": "myshopp-a7b9e.firebasestorage.app"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.myshop"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "795006859016-8m07bnlkigr4beba68bfc19ja86i79bc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myshop",
+            "certificate_hash": "991889e4478f6b1f2511328f9e1cdea92771e2de"
+          }
+        },
+        {
+          "client_id": "795006859016-m1v4930n0lfa4v119pjtrpuungil910t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyADB2aiAgBbdFYSEOICtiRntu3PRcWNrRA"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795006859016-m1v4930n0lfa4v119pjtrpuungil910t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

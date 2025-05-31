@@ -2,6 +2,7 @@ package com.example.myshop.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -211,8 +212,16 @@ fun CartSummary(itemTotal: Double, tax: Double, delivery: Double) {
         }
         Button(
             onClick = {
-                // Mở CheckoutActivity khi nhấn nút
-                context.startActivity(Intent(context, CheckoutActivity::class.java))
+
+                val intent = Intent(context, CheckoutActivity::class.java)
+                // Lấy list hiện tại trong cart
+                val managerCart = ManagmentCart(context)
+                val cartItems = managerCart.getListCart()
+                // Truyền list qua Intent
+                intent.putExtra("cart_items", cartItems)
+                Log.d("CartActivity", "cartItems before intent: $cartItems")
+
+                context.startActivity(intent)
             },
 
             shape = RoundedCornerShape(10.dp),

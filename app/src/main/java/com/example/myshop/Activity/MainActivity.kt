@@ -95,6 +95,8 @@ class MainActivity : BaseActivity() {
 fun MainActivityScreen(userName:String ,onCartClick:()->Unit) {
 
     val viewModel= MainViewModel()
+    val context = LocalContext.current
+
     val banners= remember { mutableStateListOf<SliderModel>() }
     val categories= remember { mutableStateListOf<CategoryModel>() }
     val popular= remember { mutableStateListOf<ItemsModel>() }
@@ -286,7 +288,16 @@ fun MainActivityScreen(userName:String ,onCartClick:()->Unit) {
                 .constrainAs (bottomMenu) {
                     bottom.linkTo(parent.bottom)
                 },
-            onItemClick = onCartClick
+            onItemClick = { item ->
+                when (item) {
+                    "Explorer" -> context.startActivity(Intent(context, ExplorerActivity::class.java))
+                    "Cart" -> context.startActivity(Intent(context, CartActivity::class.java))
+                    "Favourite" -> context.startActivity(Intent(context, FavouriteActivity::class.java))
+                    "Order" -> context.startActivity(Intent(context, OrderActivity::class.java))
+                    "Profile" -> context.startActivity(Intent(context, ProfileActivity::class.java))
+
+                }
+            }
 
         )
     }
@@ -467,23 +478,24 @@ fun IndicatorDot(
 }
 
 @Composable
-
-fun BottomMenu (modifier: Modifier, onItemClick: () -> Unit){
-    Row(modifier=modifier
-        .padding(start = 16.dp,end=16.dp,bottom=32.dp)
-        .background(
-            colorResource(R.color.darkBrown),
-            shape = RoundedCornerShape(10.dp)
-        ),
+fun BottomMenu(modifier: Modifier, onItemClick: (String) -> Unit) {
+    Row(
+        modifier = modifier
+            .padding(start = 16.dp, end = 16.dp, bottom = 32.dp)
+            .background(
+                colorResource(R.color.darkBrown),
+                shape = RoundedCornerShape(10.dp)
+            ),
         horizontalArrangement = Arrangement.SpaceAround
-    ){
-        BottomMenuItem(icon = painterResource(R.drawable.btn_1), text = "Explorer")
-        BottomMenuItem(icon = painterResource(R.drawable.btn_2), text = "Cart", onItemClick=onItemClick)
-        BottomMenuItem(icon = painterResource(R.drawable.btn_3), text = "Favourite")
-        BottomMenuItem(icon = painterResource(R.drawable.btn_4), text = "Order")
-        BottomMenuItem(icon = painterResource(R.drawable.btn_5), text = "Profile")
+    ) {
+        BottomMenuItem(icon = painterResource(R.drawable.btn_1), text = "Explorer", onItemClick = { onItemClick("Explorer") })
+        BottomMenuItem(icon = painterResource(R.drawable.btn_2), text = "Cart", onItemClick = { onItemClick("Cart") })
+        BottomMenuItem(icon = painterResource(R.drawable.btn_3), text = "Favourite", onItemClick = { onItemClick("Favourite") })
+        BottomMenuItem(icon = painterResource(R.drawable.btn_4), text = "Order", onItemClick = { onItemClick("Order") })
+        BottomMenuItem(icon = painterResource(R.drawable.btn_5), text = "Profile", onItemClick = { onItemClick("Profile") })
     }
 }
+
 
 @Composable
 fun BottomMenuItem(icon: Painter, text:String, onItemClick:(()->Unit)?=null){

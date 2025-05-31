@@ -76,7 +76,7 @@ class IntroActivity : BaseActivity() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 e.printStackTrace()
-                Toast.makeText(this, "Google sign in failed", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
@@ -89,7 +89,6 @@ class IntroActivity : BaseActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
-                    Toast.makeText(this, "Firebase authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }

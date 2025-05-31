@@ -17,6 +17,8 @@ firebaseCrashlyticsBuildtools = "3.0.3"
 constraintlayout = "2.2.1"
 foundationAndroid = "1.6.7"
 firebaseAuthKtx = "23.2.1"
+firebaseFirestoreKtx = "25.1.4"
+firebaseFirestore = "25.1.4"
 
 
 [libraries]
@@ -43,6 +45,8 @@ firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "fireb
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
